@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Demo</title>
+    <style>
+        .container {
+            width: 60%;
+            justify-content: center;
+            box-shadow: 3px 4px 5px 3px #36363665;
+            background-color: white;
+            height: 60vh;
+            border-radius: 5px;
+        }
+
+        body {
+            justify-content: center;
+            padding-left: 30%;
+            padding-top: 10vh;
+            background-image: linear-gradient(to bottom right, rgb(0, 187, 146), rgb(0, 196, 206));
+            height: 100vh;
+
+        }
+
+        .heading {
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        .heading h1 {
+           text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(0, 235, 145);
+
+        }
+
+        .description p {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(106, 106, 106);
+
+        }
+
+        #question {
+            color: rgb(94, 94, 94);
+            padding: 25px 15%;
+            
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        .answers{
+            width: 100%;
+            padding: 0 10%;
+            display: flex;
+            margin-top: 20px;
+
+        }
+        .option{
+            width:30%;
+            height: 30px;
+            margin: 0 5%;
+            background-color: aquamarine;
+            text-align: center;
+            border-radius: 5px;
+            color: rgb(0, 81, 84);
+            font-family: Arial, Helvetica, sans-serif;
+            padding-top: 10px;
+            font-size: 13px;
+        }
+        .option:hover{
+   
+            border: 1px solid rgb(5, 35, 25);
+            color: rgb(94, 94, 94);
+        }
+
+        .buttons {
+            margin-top: 10%;
+            margin-left: 20px;
+            margin-right: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+       
+
+        button {
+            width: 10vw;
+            height: 30px;
+            border: none;
+            background-image: linear-gradient(to bottom right, rgb(0, 187, 146), rgb(0, 196, 206));
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px 1px #9b9b9b5b;
+        }
+    </style>
+</head>
+
+<body onload="load()">
+    <div class="container" id="contains">
+        <div class="heading">
+            <h1>Welcome to JS Quiz</h1>
+        </div>
+        <div class="description" >
+            <p id="desc">You have to select the correct option among the given options.</p>
+        </div>
+        <div id="question">
+        
+        </div>
+        <div class="answers" id="answers1">
+            <div class="option option1" id="op1" onclick="selectOption1()">
+
+            </div>
+            <div class="option option2" id="op2" onclick="selectOption2()" >
+
+            </div>
+        </div>
+        <div class="answers" id="answers2">
+            <div class="option option1" id="op3" onclick="selectOption3()">
+
+            </div>
+            <div class="option option2" id="op4" onclick="selectOption4()">
+                
+            </div>
+        </div>
+        
+        <div class="buttons" id="buttonclass">
+            <div class="previous">
+                <button onclick="previous()" id="previous">Previous</button>
+            </div>
+            <div class="next">
+                <button onclick="next()" id="next">Next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var arr = [{
+            "question": "1. Javascript is an _______ language?",
+            "option1": "Object Oriented",
+            "option2": "Object Based",
+            "option3": "Procedural",
+            "option4": "None of the above",
+            "Answer": "Object Oriented"
+        },
+        {
+            "question": "2. Which of the following keywords is used to define a variable in Javascript?",
+            "option1": "var",
+            "option2": "let",
+            "option3": "Both A and B",
+            "option4": "None of the above",
+            "Answer": "Both A and B"
+        },
+        {
+            "question": "3. Which of the following methods is used to access HTML elements using Javascript?",
+            "option1": "getElementById()",
+            "option2": "getElementByClassName()",
+            "option3": "Both A and B",
+            "option4": "None of the above",
+            "Answer": "Both A and B"
+        },
+        {
+            "question": "4. Upon encountering empty statements, what does the Javascript Interpreter do?",
+            "option1": "Throws an error",
+            "option2": "Ignores the statement",
+            "option3": "Gives a Warning",
+            "option4": "None of the above",
+            "Answer": "Ignores the statement"
+        },
+        {
+            "question": "5. How can a datatype be declared to be a constant type?",
+            "option1": "const",
+            "option2": "var",
+            "option3": "Let",
+            "option4": "Constant",
+            "Answer": "const"
+        },
+        {
+            "question": "6. What keyword is used to check whether a given property is valid or not?",
+            "option1": "in",
+            "option2": "is in",
+            "option3": "exists",
+            "option4": "lies",
+            "Answer": "in"
+        },
+        ]
+        var selectedAnswers = [null, null, null, null, null, null];
+        var index = 0;
+        var score = 0;
+        function load(){
+            document.getElementById("question").innerHTML = arr[index].question;
+            document.getElementById("op1").innerHTML = arr[index].option1;
+            document.getElementById("op2").innerHTML = arr[index].option2;
+            document.getElementById("op3").innerHTML = arr[index].option3;
+            document.getElementById("op4").innerHTML = arr[index].option4;
+            if(index>=arr.length-1){
+                document.getElementById("next").innerHTML = "Submit";
+            }else{
+                document.getElementById("next").innerHTML = "Next";
+            }
+            if(index == 0){
+                document.getElementById("previous").style.display = "none";
+            }else{
+                document.getElementById("previous").style.display = "block";
+            }
+            
+            if(selectedAnswers[index] === null){
+            document.getElementById("op1").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.backgroundColor = 'aquamarine';
+            document.getElementById("op3").style.backgroundColor = 'aquamarine';
+            document.getElementById("op4").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+            }else{
+                if(selectedAnswers[index] == document.getElementById("op1").innerHTML){
+                    document.getElementById("op1").style.backgroundColor = 'orange';
+                    document.getElementById("op1").style.color = 'white';
+                    document.getElementById("op2").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op3").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op4").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+                }else if(selectedAnswers[index] == document.getElementById("op2").innerHTML){
+                    document.getElementById("op1").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op2").style.backgroundColor = 'orange';
+                    document.getElementById("op2").style.color = 'white';
+                    document.getElementById("op3").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op4").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+                }else if(selectedAnswers[index] == document.getElementById("op3").innerHTML){
+                    document.getElementById("op1").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op2").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op3").style.backgroundColor = 'orange';
+                    document.getElementById("op3").style.color = 'white';
+                    document.getElementById("op4").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+                }else if(selectedAnswers[index] == document.getElementById("op4").innerHTML){
+                    document.getElementById("op1").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op2").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op3").style.backgroundColor = 'aquamarine';
+                    document.getElementById("op4").style.backgroundColor = 'orange';
+                    document.getElementById("op4").style.color = 'white';
+                    document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+                    document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+                }
+            }
+        }
+        function next(){
+            if(document.getElementById("next").innerHTML == "Next"){
+                index++;
+                load();
+            }else{
+                
+                document.getElementById("question").style.display = "none";
+              
+                document.getElementById("answers1").style.display = "none";
+                document.getElementById("answers2").style.display = "none";
+                document.getElementById("buttonclass").style.display = "none";
+                for(i=0; i<arr.length; i++){
+                    if(selectedAnswers[i] == arr[i].Answer){
+                        score++;
+                    }
+                }
+
+                document.getElementById("desc").innerHTML = `Your score is ${score} / ${arr.length}`;
+                document.getElementById("desc").style.fontSize = '25px'
+                document.getElementById("contains").style.height = '30%'
+                document.getElementById("desc").style.textAlign = 'center'
+
+            }
+           
+         
+        }
+        function previous(){
+            
+            index--;
+            load();
+            
+        }
+        function selectOption1(){
+            selectedAnswers[index]=document.getElementById("op1").innerHTML;
+            console.log(selectedAnswers);
+            document.getElementById("op1").style.backgroundColor = 'orange';
+            document.getElementById("op1").style.color = 'white';
+            document.getElementById("op2").style.backgroundColor = 'aquamarine';
+            document.getElementById("op3").style.backgroundColor = 'aquamarine';
+            document.getElementById("op4").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+
+        }
+        function selectOption2(){
+            selectedAnswers[index]=document.getElementById("op2").innerHTML;
+            console.log(selectedAnswers);
+            document.getElementById("op1").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.backgroundColor = 'orange';
+            document.getElementById("op2").style.color = 'white';
+            document.getElementById("op3").style.backgroundColor = 'aquamarine';
+            document.getElementById("op4").style.backgroundColor = 'aquamarine';
+            document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+
+        }
+        function selectOption3(){
+            selectedAnswers[index]=document.getElementById("op3").innerHTML;
+            console.log(selectedAnswers);
+            document.getElementById("op1").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.backgroundColor = 'aquamarine';
+            document.getElementById("op3").style.backgroundColor = 'orange';
+            document.getElementById("op3").style.color = 'white';
+            document.getElementById("op4").style.backgroundColor = 'aquamarine';
+            document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op4").style.color = 'rgb(0, 81, 84)';
+
+        }
+        function selectOption4(){
+            selectedAnswers[index]=document.getElementById("op4").innerHTML;
+            console.log(selectedAnswers);
+            document.getElementById("op1").style.backgroundColor = 'aquamarine';
+            document.getElementById("op2").style.backgroundColor = 'aquamarine';
+            document.getElementById("op3").style.backgroundColor = 'aquamarine';
+            document.getElementById("op4").style.backgroundColor = 'orange';
+            document.getElementById("op4").style.color = 'white';
+            document.getElementById("op2").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op3").style.color = 'rgb(0, 81, 84)';
+            document.getElementById("op1").style.color = 'rgb(0, 81, 84)';
+
+        }
+    </script>
+</body>
+</html>

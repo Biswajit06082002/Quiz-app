@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+      </style>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width:100%;
+            padding-left: 10%;
+            padding-top: 7%;
+            background-image: linear-gradient(to bottom right, rgb(255, 43, 142), rgb(119, 0, 255)); 
+            height: 100vh;;
+        }
+        .innerContainer{
+            width: 80%;
+            height:75%;
+            display: flex;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 1px 3px 6px 1px rgb(85, 1, 100);
+        }
+        .imageContainer{
+            width: 50%;
+            height:100%;
+            background-image: url("Images/cool-css-backgrounds.jpg")
+          
+        }
+        .formContainer{
+            width: 50%;
+            height:100%;
+            background-color: white;
+        }
+        .companyLogo{
+            display: flex;
+            padding: 10px;
+        }
+        .companyLogo img{
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .companyLogo p{
+
+            font-size: 20px;
+            color: white;
+            font-family: 'Source Code Pro', monospace;
+            margin: 0;
+            padding: 0;
+
+        }
+        .welcome{
+            color: white;
+            font-size: 15px;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 200;
+            
+
+        }
+        .imageText{
+            height: 80%;
+            padding-left: 30%;
+            padding-top: 20%;
+            
+        }
+        .to{
+            color: white;
+            font-size: 15px;
+            font-family: 'Source Code Pro', monospace;
+            
+        }
+        .marcos{
+            font-size: 40px;
+            font-family:Arial, Helvetica, sans-serif;
+            color: white;
+            margin-top: 5%;
+        }
+        .signin{
+            font-family:Arial, Helvetica, sans-serif;
+            color: white;
+            font-size: 20px;
+            margin-top: 5%;
+            font-weight: 500;
+        }
+        .formHeading{
+            font-size: 30px;
+            color: rgb(6, 6, 6);
+            font-family:Arial, Helvetica, sans-serif;
+            text-align: center;
+    
+            padding-top: 10%;
+        }
+        .inputs{
+            width: 60%;
+            height: 40%;
+            
+            padding-top: 5%;
+            margin-left: 20%;
+        }
+        input{
+            width: 100%;
+            height: 20px;
+            border: none;
+            border-bottom: 1px solid rgb(44, 0, 126) ;
+           
+            padding: 10px;
+            
+            margin-bottom: 5px;
+            font-size: 15px;
+            color: rgb(51, 0, 99);
+            
+        }
+        input:focus {
+           background-color: white;
+           color: rgb(51, 0, 99);
+            
+            
+        }
+        button{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(255, 43, 142), rgb(119, 0, 255));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        button:hover{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(205, 33, 113), rgb(88, 0, 188));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .separator{
+            margin: 30px 45%;
+            width: 15%;
+            height: 20px;
+            border-bottom: 1px solid rgb(153, 153, 153) ;
+        }
+        .Facebook{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(43, 107, 255), rgb(0, 128, 255));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .Google{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(242, 241, 241), rgb(211, 210, 210));
+            border: none;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .Facebook:hover{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(38, 94, 224), rgb(1, 110, 218));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .Google:hover{
+            width: 105%;
+            height: 40px;
+            background-image: linear-gradient(to bottom right, rgb(190, 190, 190), rgb(204, 204, 204));
+            border: none;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .signup{
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin-bottom: 0px;
+            margin-top: 40%;
+            margin-left: 55%;
+        }
+        .signup a{
+         
+            color: white;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif
+            
+        }
+        #reEnter{
+            display: none;
+        }
+        .error{
+            background-color: rgb(255, 193, 193);
+            color: red;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        .text{
+            font-family:Arial, Helvetica, sans-serif;
+            color: rgb(51, 0, 99);
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="innerContainer">
+            <div class="imageContainer">
+                <div class="companyLogo">
+                    <img src="images/Logo1-removebg-preview.png" alt="">
+                    <p>MARCOS</p>
+                </div>
+                <div class="imageText">
+                   <div class="welcome">
+                    WELCOME
+                   </div> 
+                   <div class="to">
+                    TO
+                   </div> 
+                   <div class="marcos">
+                    MARCOS.COM
+                    </div> 
+                    <div class="signin" id="textSignIn">
+                        SIGN IN
+                    </div> 
+                   
+                </div> 
+                
+            </div>
+            <div class="formContainer">
+                <b><div class="formHeading" id="formHead">
+                    Sign In
+                </div>
+                </b>    
+                <div class="inputs" >
+                    <div class="error" id="errorType">
+
+                    </div>
+                    <div class="email">
+                        <input type="email" placeholder="Email" id="emailInput">
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Password" id="passwordInput">
+                    </div>
+                    <div class="repassword" id="reEnter">
+                        <input type="password" placeholder="Re-Enter Password" id="passwordReInput">
+                    </div>
+
+                    <div class="button">
+                        <button class="signinbutton" id="signIn" onclick="signButton()"> SIGN IN</button>
+                    </div>
+                    <div class="separator">
+
+                    </div>
+                    <div class="text" id="btnDescription">
+                        dont have any account?
+                    </div>
+                    <div class="button" >
+                        <button class="signinbutton" id="signUp" onclick="togglePages()">SIGN UP</button>
+                    </div>
+                   
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var arr = [
+            {
+                email: "biswajitr022@gmail.com",
+                password: "12345"
+            },
+            {
+                email: "marcosworld200@gmail.com",
+                password: "67890"
+            }
+        ]
+        var object;
+        function togglePages(){
+            if(document.getElementById("signUp").innerHTML == "SIGN UP"){
+                document.getElementById("textSignIn").innerHTML = "SIGN UP";
+                document.getElementById("reEnter").style.display = "block";
+                document.getElementById("formHead").innerHTML = "Sign Up";
+                document.getElementById("signUp").innerHTML = "SIGN IN";
+                document.getElementById("signIn").innerHTML = "SIGN UP";
+                document.getElementById("btnDescription").innerHTML = "Already have an Account?";
+                document.getElementById("emailInput").value = "";
+                document.getElementById("passwordInput").value = "";
+                document.getElementById("errorType").innerHTML = "";
+            }else{
+                document.getElementById("textSignIn").innerHTML = "SIGN IN";
+                document.getElementById("reEnter").style.display = "none";
+                document.getElementById("formHead").innerHTML = "Sign In";
+                document.getElementById("signUp").innerHTML = "SIGN UP";
+                document.getElementById("signIn").innerHTML = "SIGN IN";
+                document.getElementById("btnDescription").innerHTML = "dont have any account?";
+                document.getElementById("emailInput").value = "";
+                document.getElementById("passwordInput").value = "";
+                document.getElementById("passwordReInput").value = "";
+                document.getElementById("errorType").innerHTML = "";
+            }
+        }
+        function signIn(){
+           console.log("This is SignIn");
+           if(document.getElementById("emailInput").value == "" || document.getElementById("passwordInput").value == "" ){
+                document.getElementById("errorType").innerHTML = "Please Fill the Required fields"
+           }else{
+            var email = document.getElementById("emailInput").value;
+            var password = document.getElementById("passwordInput").value;
+            var flag = 0;
+            for(i=0; i<arr.length; i++){
+                if(email == arr[i].email && password == arr[i].password){
+                   flag = 1;
+                }
+            }
+            if(flag == 1){
+               console.log("Login Succesful");
+               document.getElementById("errorType").innerHTML = "Success!! Login Successful";
+               document.getElementById("errorType").style.backgroundColor = 'lightgreen';
+               document.getElementById("errorType").style.color = 'green';
+               window.location.href = "Quiz.html";
+            }else{
+                document.getElementById("errorType").innerHTML = "Incorrect email or password";
+            }
+           }
+
+        }
+        function signUp(){
+            console.log("This is SignUp");
+            if(document.getElementById("emailInput").value == "" || document.getElementById("passwordInput").value == "" || document.getElementById("passwordReInput").value == ""){
+                document.getElementById("errorType").innerHTML = "Please Fill the Required fields";
+           }else{
+            var email = document.getElementById("emailInput").value;
+            var password = document.getElementById("passwordInput").value;
+            var rePassword = document.getElementById("passwordReInput").value;
+            if(password == rePassword){
+                object = {
+                    email: email,
+                    password: password,
+
+                }
+                arr.push(object);
+                document.getElementById("errorType").innerHTML = "Success!! Account Created";
+               document.getElementById("errorType").style.backgroundColor = 'lightgreen';
+               document.getElementById("errorType").style.color = 'green';
+               
+            }else{
+                document.getElementById("errorType").innerHTML = "Please enter the same password";
+            }
+           }
+        }
+        function signButton(){
+            if(document.getElementById("signUp").innerHTML == "SIGN UP"){
+                signIn();
+            }else{
+                signUp();
+            }
+        }
+    </script>
+</body>
+</html>
